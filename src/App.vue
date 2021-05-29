@@ -1,6 +1,7 @@
 <template>
   <div id="quiz">
     <h2>Quiz Machine - v6 - TS - Vite</h2>
+    <h3>Same as V5, but with Vite and not with Vue CLI</h3>
     <code>state: {{ state.value }} </code>
 
     <div class="box">
@@ -22,6 +23,7 @@
           :value="true"
           v-model="picked"
         />
+        <!-- <input type="radio" :value="option" @input="$emit('input', $event.target.value)" :checked="option === value" /> -->
         <label :class="{ 'disabled-label': isAnswered }" for="true">True</label>
         <input
           :disabled="isAnswered"
@@ -67,7 +69,7 @@ export default defineComponent({
     instructions,
     score,
     feedback,
-    actions
+    actions,
   },
   setup() {
     const {
@@ -78,7 +80,7 @@ export default defineComponent({
       isAnswered,
       currentQuestion,
       currentFeedback,
-      activeButton
+      activeButton,
     } = useQuiz(fetchQuestions());
 
     return {
@@ -89,9 +91,9 @@ export default defineComponent({
       isQuestionTime,
       currentQuestion,
       currentFeedback,
-      activeButton
+      activeButton,
     };
-  }
+  },
 });
 </script>
 <style></style>

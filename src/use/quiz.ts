@@ -21,6 +21,7 @@ export default function quiz(Questions: Question[]) {
 
   // user answer to true/false question
   const picked = ref<boolean | null>();
+  // const picked = ref<string | number | undefined>();
 
   // show question if the following states don't matche
   const isQuestionTime = computed<boolean>(
