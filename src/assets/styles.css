@@ -76,6 +76,9 @@ button:hover {
 
 /* EMOJI FEEDBACK */
 .feedback {
+  padding-top: 10px; position: relative; transform: translate(-50%, 0); left: 50%;
+}
+.emoji {
   font-size: 60px;
   display: inline-block;
 }
@@ -111,3 +114,44 @@ button:hover {
   padding: 20px 0;
   font-size: 20px;
 }
+
+code {
+  line-height: 3;
+}
+
+/* IFRAME */
+iframe {
+  height: 65vh;
+  width: 100%;
+  display: block;
+}
+@media only screen and (orientation: portrait) {
+  iframe {
+    display: none;
+  }
+}
+
+/* Transition: fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Animation: wiggle */
+
+/* @keyframes wiggle {
+    0% { transform: translateX(0%); }
+   25% { transform: translateX(10%); }
+   50% { transform: translateX(0%); }
+  75% { transform: translateX(-10%); }
+  100% { transform: translateX(0%); }
+}
+
+.wiggle {
+  border: 2px solid red;
+  animation: wiggle 0.4s ease-in-out;
+  animation-iteration-count: 3;
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+} */

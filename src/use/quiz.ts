@@ -15,13 +15,15 @@ import {
   correct
 } from "../components/feedback-components/";
 
+// GSAP Transition
+import { shake } from '../utils/transitions';
+
 export default function quiz(Questions: Question[]) {
   // initialise xstate machine
   const { state, send } = useMachine(QuizMachine, { devTools: true });
 
-  // user answer to true/false question
-  const picked = ref<boolean | null>();
-  // const picked = ref<string | number | undefined>();
+  // user answer to the question
+  const selectedOption = ref<string | undefined>();
 
   // show question if the following states don't matche
   const isQuestionTime = computed<boolean>(
@@ -36,20 +38,26 @@ export default function quiz(Questions: Question[]) {
     () => Questions[state.value.context.currentQuestion]
   );
 
+
+
   // reset answers when new question is set
   watchEffect(() => {
     // reset radio buttons when state becomes pending
     if (state.value.matches("answering.idle")) {
-      picked.value = null;
+      selectedOption.value = undefined;
+    }
+    if (state.value.matches("answering.invalid")) {
+      shake(".box")
     }
   });
 
-  // Feedback ======================================
 
+
+  // Feedback ======================================
   // default feedback object map
   const defaultFeedback = { state: "initial", mood: idle, color: "#a27ae8" };
 
-  const newFeedbackMap: Feedback[] = [
+  const feedbackMap: Feedback[] = [
     { state: "initial", mood: idle, color: "#a27ae8" },
     { state: "answering.idle", mood: answering, color: "#FCCB7E" },
     { state: "correct", mood: correct, color: "#50b97e" },
@@ -58,14 +66,15 @@ export default function quiz(Questions: Question[]) {
   ];
 
   const currentFeedback = computed(() => {
-    const matched = newFeedbackMap.filter(feedback =>
+    const matched = feedbackMap.filter(feedback =>
       state.value.toStrings().includes(feedback.state)
     );
     return matched.length === 1 ? matched[0] : defaultFeedback;
   });
 
-  // ACTIONS ======================================
 
+
+  // ACTIONS ======================================
   // Array below decides which button to show based on current state
   const actions: Action[] = [
     {
@@ -79,12 +88,12 @@ export default function quiz(Questions: Question[]) {
     },
     {
       label: "ANSWER",
-      cond: state => ["answering.idle", "answering.problem"].some(state.value.matches),
+      cond: state => ["answering.idle", "answering.invalid"].some(state.value.matches),
       action: () =>
         send({ 
-          type: "ANSWER", 
+          type: "ANSWER",
           answer: { 
-            picked: picked.value, 
+            selectedOption: selectedOption.value,
             value: currentQuestion.value.answer 
           }
         } as QuizEvent)
@@ -101,13 +110,17 @@ export default function quiz(Questions: Question[]) {
 
   // return properties and methods to control the UI
   return {
+    // machine
     state,
     send,
-    picked,
+    // question
+    selectedOption,
     isQuestionTime,
     isAnswered,
     currentQuestion,
+    // feedback
     currentFeedback,
+    // actions
     activeButton
   };
 }

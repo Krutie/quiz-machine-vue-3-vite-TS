@@ -1,12 +1,7 @@
-<template>
-  <svg width="1em" height="1em" viewBox="0 0 512 512">
-    <path
-      d="M437.3 30L202.7 339.3L64 200.7l-64 64L213.3 478L512 94z"
-      fill="currentColor"
-    ></path>
-  </svg>
-</template>
 
+<template>
+  <svg width="1em" height="1em" viewBox="0 0 128 128"><path d="M63.79 8.64C1.48 8.64 0 78.5 0 92.33c0 13.83 28.56 25.03 63.79 25.03c35.24 0 63.79-11.21 63.79-25.03c0-13.83-1.47-83.69-63.79-83.69z" fill="#fcc21b"></path><g fill="#2f2f2f"><path d="M42.21 66.47c-4.49.04-8.17-4.27-8.22-9.62c-.05-5.37 3.55-9.75 8.04-9.79c4.48-.04 8.17 4.27 8.22 9.64c.05 5.36-3.55 9.73-8.04 9.77z"></path><path d="M86.32 66.47c4.48-.01 8.11-4.36 8.1-9.71c-.01-5.37-3.66-9.7-8.14-9.69c-4.49.01-8.13 4.36-8.12 9.73c.02 5.35 3.67 9.68 8.16 9.67z"></path></g><path d="M36.19 81.17c13.73 16.67 41.89 16.67 55.62 0" fill="none" stroke="#2f2f2f" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10"></path></svg>
+</template>
 <script lang="ts">
 import { defineComponent } from "vue";
 

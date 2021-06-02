@@ -5,37 +5,30 @@
     <code>state: {{ state.value }} </code>
 
     <div class="box">
+      <!-- if you don't want to use GSAP, bind CSS -->
+      <!-- :class="{ wiggle: state.matches('answering.invalid') }" -->
       <!-- feedback emojis -->
-      <feedback :currentFeedback="currentFeedback" />
+      <feedback :currentFeedback="currentFeedback" :state="state"/>
 
       <!-- instructions -->
       <instructions :state="state" />
 
       <!-- question -->
-      <div v-if="isQuestionTime">
-        <span class="question">
-          {{ currentQuestion.text }}
-        </span>
-        <input
-          :disabled="isAnswered"
-          type="radio"
-          id="true"
-          :value="true"
-          v-model="picked"
-        />
-        <!-- <input type="radio" :value="option" @input="$emit('input', $event.target.value)" :checked="option === value" /> -->
-        <label :class="{ 'disabled-label': isAnswered }" for="true">True</label>
-        <input
-          :disabled="isAnswered"
-          type="radio"
-          id="false"
-          :value="false"
-          v-model="picked"
-        />
-        <label :class="{ 'disabled-label': isAnswered }" for="false"
-          >False</label
-        >
-      </div>
+        <div v-if="isQuestionTime">
+          <span class="question">
+            {{ currentQuestion.text }}
+          </span>
+          <div v-for="option in currentQuestion.options" :key="option" style="text-align: left;">
+            <input
+              :disabled="isAnswered"
+              type="radio"
+              :id="option"
+              :value="option"
+              v-model="selectedOption"
+            />
+            <label :class="{ 'disabled-label': isAnswered }" :for="option">{{option}}</label>
+          </div>
+        </div>
 
       <!-- ACTIONS -->
       <actions :state="state" :activeButton="activeButton" />
@@ -75,7 +68,7 @@ export default defineComponent({
     const {
       state,
       send,
-      picked,
+      selectedOption,
       isQuestionTime,
       isAnswered,
       currentQuestion,
@@ -86,7 +79,7 @@ export default defineComponent({
     return {
       state,
       send,
-      picked,
+      selectedOption,
       isAnswered,
       isQuestionTime,
       currentQuestion,
@@ -97,3 +90,5 @@ export default defineComponent({
 });
 </script>
 <style></style>
+<!-- Active issue on watch -->
+<!-- https://github.com/znck/vue-developer-experience/issues/142 -->

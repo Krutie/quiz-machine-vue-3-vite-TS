@@ -9,6 +9,7 @@
   "dependencies": {
     "@xstate/inspect": "^0.4.1",
     "@xstate/vue": "^0.5.0",
+    "gsap": "^3.6.1",
     "vue": "^3.0.5",
     "xstate": "^4.19.2"
   },

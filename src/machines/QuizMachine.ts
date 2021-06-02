@@ -5,7 +5,7 @@ import { QuizContext, QuizState, QuizEvent, Answer } from "../types/";
 // Validate answer
 const validateAnswer = (ctx: QuizContext, evt: QuizEvent) =>
   new Promise((resolve, reject) => {
-    if (evt.type === "ANSWER" && evt.answer?.picked !== null) {
+    if (evt.type === "ANSWER" && evt.answer?.selectedOption !== undefined) {
       resolve(evt.answer);
     } else {
       reject(new Error("Please select answer."));
@@ -30,6 +30,7 @@ const CHECK_ANSWER = {
     },
   },
 };
+
 export const QuizMachine = createMachine<QuizContext, QuizEvent, QuizState>(
   {
     id: "quiz",
@@ -71,7 +72,7 @@ export const QuizMachine = createMachine<QuizContext, QuizEvent, QuizState>(
                 }),
               },
               onError: {
-                target: "problem",
+                target: "invalid",
                 actions: assign<QuizContext, DoneInvokeEvent<any>>(
                   (context, event) => {
                     return {
@@ -82,7 +83,7 @@ export const QuizMachine = createMachine<QuizContext, QuizEvent, QuizState>(
               },
             },
           },
-          problem: CHECK_ANSWER,
+          invalid: CHECK_ANSWER,
           complete: {
             type: "final",
           },
@@ -139,10 +140,10 @@ export const QuizMachine = createMachine<QuizContext, QuizEvent, QuizState>(
         return context.currentQuestion < context.totalQuestions;
       },
       isCorrect: (ctx: QuizContext) => {
-        return ctx.answer?.picked === ctx.answer?.value;
+        return ctx.answer?.selectedOption === ctx.answer?.value;
       },
       isIncorrect: (ctx: QuizContext) => {
-        return ctx.answer?.picked !== ctx.answer?.value;
+        return ctx.answer?.selectedOption !== ctx.answer?.value;
       },
     },
     actions: {

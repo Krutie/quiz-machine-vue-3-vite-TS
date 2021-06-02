@@ -2,30 +2,41 @@ import { Question } from "../types/";
 
 const questions: Question[] = [
   {
+    text: "Which one of the following is a library?",
+    answer: "React",
+    options: ['React', 'Vue']
+  },
+  {
     text: "This is true.",
-    answer: true
+    answer: "True",
+    options: ['True', 'False']
   },
   {
     text: "This is false.",
-    answer: false
+    answer: "False",
+    options: ['True', 'False']
   },
   {
     text: "True: Context API in React is bit similar to Provide/Inject in Vue.",
-    answer: true
+    answer: "True",
+    options: ['True', 'False']
   },
   {
     text:
       "False: You have to author two separate Xstate machines to be used in Vue app and React app. ",
-    answer: false
+    answer: "False",
+    options: ['True', 'False']
   },
   {
     text:
       "True: watchEffect in Vue 3 is sort of similar to useEffect in React, like they both handle side-effects.",
-    answer: true
+    answer: "True",
+    options: ['True', 'False']
   },
   {
     text: "This is false.",
-    answer: false
+    answer: "False",
+    options: ['True', 'False']
   }
 ];
 
