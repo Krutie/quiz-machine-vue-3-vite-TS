@@ -38,6 +38,7 @@ iframe {
 .question {
   display: block;
   padding: 0 10px 25px 10px;
+  text-align: left;
 }
 
 input[type="radio"] {
