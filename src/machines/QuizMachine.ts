@@ -2,7 +2,11 @@
 import { createMachine, assign, DoneInvokeEvent } from "xstate";
 import { QuizContext, QuizState, QuizEvent, Answer } from "../types/";
 
-// Validate answer
+/**
+ * Validate answer
+ * @param ctx
+ * @param evt 
+ */
 const validateAnswer = (ctx: QuizContext, evt: QuizEvent) =>
   new Promise((resolve, reject) => {
     if (evt.type === "ANSWER" && evt.answer?.selectedOption !== undefined) {
@@ -12,7 +16,10 @@ const validateAnswer = (ctx: QuizContext, evt: QuizEvent) =>
     }
   });
 
-// NEXT_QUESTION transition object
+
+/**
+ * NEXT_QUESTION transition object
+ */
 const NEXT_Q = [
   {
     target: "answering",
@@ -22,6 +29,10 @@ const NEXT_Q = [
   { target: "finish" },
 ];
 
+
+/**
+ * CHECK_ANSWER transition object
+ */
 const CHECK_ANSWER = {
   exit: ["clearErrorMessage"],
   on: {

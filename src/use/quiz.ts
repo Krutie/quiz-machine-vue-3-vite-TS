@@ -19,13 +19,19 @@ import {
 import { shake } from '../utils/transitions';
 
 export default function quiz(Questions: Question[]) {
-  // initialise xstate machine
+  /**
+   * initialise xstate machine
+   */
   const { state, send } = useMachine(QuizMachine, { devTools: true });
 
-  // user answer to the question
+  /**
+   * user answer to the question
+  */ 
   const selectedOption = ref<string | undefined>();
 
-  // show question if the following states don't matche
+  /**
+   * show question if the following states don't matche
+   */
   const isQuestionTime = computed<boolean>(
     () => !state.value.matches("initial") && !state.value.matches("finish")
   );
@@ -33,19 +39,25 @@ export default function quiz(Questions: Question[]) {
   const resultStates = ["correct", "incorrect"] as const;
   const isAnswered = computed<boolean>(() => resultStates.some(state.value.matches));
 
-  // current question based on context value defined in Quiz machine
+  /**
+   * current question based on context value defined in Quiz machine
+   */
   const currentQuestion = computed<Question>(
     () => Questions[state.value.context.currentQuestion]
   );
 
 
 
-  // reset answers when new question is set
+  /**
+   * reset answers when new question is set
+   */
   watchEffect(() => {
     // reset radio buttons when state becomes pending
     if (state.value.matches("answering.idle")) {
       selectedOption.value = undefined;
     }
+    
+    // shake box when answer is invalid
     if (state.value.matches("answering.invalid")) {
       shake(".box")
     }
@@ -53,8 +65,9 @@ export default function quiz(Questions: Question[]) {
 
 
 
-  // Feedback ======================================
-  // default feedback object map
+  /**
+   * FEEDBACK: default feedback object map
+   */
   const defaultFeedback = { state: "initial", mood: idle, color: "#a27ae8" };
 
   const feedbackMap: Feedback[] = [
@@ -65,6 +78,9 @@ export default function quiz(Questions: Question[]) {
     { state: "finish", mood: finish, color: "#a27ae8" }
   ];
 
+  /**
+   * FEEDBACK: show current feedback based on state value
+   */
   const currentFeedback = computed(() => {
     const matched = feedbackMap.filter(feedback =>
       state.value.toStrings().includes(feedback.state)
@@ -74,8 +90,10 @@ export default function quiz(Questions: Question[]) {
 
 
 
-  // ACTIONS ======================================
-  // Array below decides which button to show based on current state
+  
+  /**
+   * ACTIONS: Array below decides which button to show based on current state
+   */
   const actions: Action[] = [
     {
       label: "START",
@@ -105,10 +123,14 @@ export default function quiz(Questions: Question[]) {
     }
   ];
 
-  // show active button based on state value
+  /**
+   * ACTIONS: show active button based on state value
+   */
   const activeButton = computed(() => actions.find(action => action.cond(state)) || actions[0]);
 
-  // return properties and methods to control the UI
+  /**
+   * return properties and methods to control the UI
+   */
   return {
     // machine
     state,
