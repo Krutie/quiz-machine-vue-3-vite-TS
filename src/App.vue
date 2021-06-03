@@ -8,7 +8,7 @@
       <!-- if you don't want to use GSAP, bind CSS -->
       <!-- :class="{ wiggle: state.matches('answering.invalid') }" -->
       <!-- feedback emojis -->
-      <feedback :currentFeedback="currentFeedback" :state="state"/>
+      <feedback :currentFeedback="currentFeedback"/>
 
       <!-- instructions -->
       <instructions :state="state" />

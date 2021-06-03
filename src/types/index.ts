@@ -33,7 +33,6 @@ export interface QuizContext {
 }
 
 type InitialState = { value: "initial"; context: QuizContext };
-type AnsweringState = { value: "answering"; context: QuizContext };
 type IdleState = { value: "answering.idle"; context: QuizContext };
 type SubmittingState = { value: "submitting"; context: QuizContext };
 type InvalidState = { value: "answering.invalid"; context: QuizContext };
@@ -42,10 +41,11 @@ type CheckingState = { value: "checking"; context: QuizContext };
 type CorrectState = { value: "correct"; context: QuizContext };
 type IncorrectState = { value: "incorrect"; context: QuizContext };
 type FinishState = { value: "finish"; context: QuizContext };
+// type AnsweringState = { value: "answering"; context: QuizContext };
 
 export type QuizState =
   | InitialState
-  | AnsweringState
+  // | AnsweringState
   | IdleState
   | SubmittingState
   | InvalidState
