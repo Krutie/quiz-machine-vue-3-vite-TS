@@ -1,7 +1,7 @@
 <template>
   <div class="action" v-if="!state.matches('finish')">
-    <button @click="activeButton.action">
-      {{ activeButton.label }}
+    <button @click="activeAction.type">
+      {{ activeAction.label }}
     </button>
     <span style="display: block">{{ state.context.errorMessage }}</span>
   </div>
@@ -18,7 +18,7 @@ export default defineComponent({
       type: Object as PropType<State<QuizContext, QuizEvent, QuizState>>,
       required: true
     },
-    activeButton: {
+    activeAction: {
       type: Object as PropType<Action>,
       required: true
     }

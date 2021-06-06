@@ -8,7 +8,7 @@
       <!-- if you don't want to use GSAP, bind CSS -->
       <!-- :class="{ wiggle: state.matches('answering.invalid') }" -->
       <!-- feedback emojis -->
-      <feedback :currentFeedback="currentFeedback"/>
+      <feedback :state="state" />
 
       <!-- instructions -->
       <instructions :state="state" />
@@ -31,7 +31,8 @@
         </div>
 
       <!-- ACTIONS -->
-      <actions :state="state" :activeButton="activeButton" />
+      <actions :state="state" :activeAction="activeAction" />
+      
     </div>
 
     <!-- SCORE -->
@@ -47,9 +48,10 @@ import { defineComponent } from "vue";
 
 // child components
 import instructions from "./components/instructions.vue";
-import feedback from "./components/feedback.vue";
+import feedback from "./components/feedback/index.vue";
 import score from "./components/score.vue";
 import actions from "./components/actions.vue";
+
 // usable
 import useQuiz from "./use/quiz";
 
@@ -72,8 +74,8 @@ export default defineComponent({
       isQuestionTime,
       isAnswered,
       currentQuestion,
-      currentFeedback,
-      activeButton,
+      totalQuestions,
+      activeAction,
     } = useQuiz(fetchQuestions());
 
     return {
@@ -83,8 +85,8 @@ export default defineComponent({
       isAnswered,
       isQuestionTime,
       currentQuestion,
-      currentFeedback,
-      activeButton,
+      totalQuestions,
+      activeAction,
     };
   },
 });

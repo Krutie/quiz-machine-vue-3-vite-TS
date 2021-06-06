@@ -17,9 +17,7 @@ const validateAnswer = (ctx: QuizContext, evt: QuizEvent) =>
   });
 
 
-/**
- * NEXT_QUESTION transition object
- */
+/* NEXT_QUESTION transition object */
 const NEXT_Q = [
   {
     target: "answering",
@@ -30,9 +28,7 @@ const NEXT_Q = [
 ];
 
 
-/**
- * CHECK_ANSWER transition object
- */
+/* CHECK_ANSWER transition object */
 const CHECK_ANSWER = {
   exit: ["clearErrorMessage"],
   on: {
@@ -166,9 +162,9 @@ export const QuizMachine = createMachine<QuizContext, QuizEvent, QuizState>(
       }),
       assignTotalQuestionsToContext: assign(
         (context: QuizContext, event: QuizEvent) => {
-          if (event.type !== "START") return {};
           // questions array starts from index 0
           // reduce one from the total length of questions array
+          if (event.type !== "START") return {};
           return {
             totalQuestions: event.totalQuestions - 1,
           };

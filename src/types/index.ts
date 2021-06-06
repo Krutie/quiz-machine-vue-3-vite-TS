@@ -13,7 +13,7 @@ export interface Question {
 export interface Action {
   label: string;
   cond: (state: any) => any;
-  action: () => State<QuizContext, QuizEvent, any, QuizState>;
+  type: () => State<QuizContext, QuizEvent, any, QuizState>;
 }
 
 export interface Feedback {
@@ -41,11 +41,9 @@ type CheckingState = { value: "checking"; context: QuizContext };
 type CorrectState = { value: "correct"; context: QuizContext };
 type IncorrectState = { value: "incorrect"; context: QuizContext };
 type FinishState = { value: "finish"; context: QuizContext };
-// type AnsweringState = { value: "answering"; context: QuizContext };
 
 export type QuizState =
   | InitialState
-  // | AnsweringState
   | IdleState
   | SubmittingState
   | InvalidState
