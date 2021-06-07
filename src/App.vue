@@ -2,6 +2,12 @@
   <div class="quiz">
     <h1>Quiz Machine</h1>
     <h2>Vite + Vue + TS</h2>
+    <span>
+      <a href="https://github.com/Krutie/quiz-machine-vue-3-vite-TS" target="_blank"> Github  </a> |
+      <a href="https://codesandbox.io/s/vxd8z" target="_blank"> CodeSandbox </a> |
+      <a href="https://quiz-machine-vue.surge.sh" target="_blank"> Surge </a>
+    </span>
+
     <!-- <h3>Same as V5, but with Vite and not with Vue CLI</h3> -->
     <code>State: {{ state.value }} </code>
 
