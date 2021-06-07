@@ -1,7 +1,7 @@
 <template>
   <span v-if="state.matches('initial')">
-    There are total three questions in this quiz. You can choose to answer or
-    skip. Skipped question will be marked as an incorrect answer.
+    This quiz is built with XState, Vue and Vite. Click start to
+            begin.
   </span>
   <div v-if="state.matches('finish')" class="finish" >
     Congratulations! You finished.
