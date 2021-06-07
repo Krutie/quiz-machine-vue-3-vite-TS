@@ -1,8 +1,9 @@
 <template>
-  <div id="quiz">
-    <h2>Quiz Machine - v6 - TS - Vite</h2>
-    <h3>Same as V5, but with Vite and not with Vue CLI</h3>
-    <code>state: {{ state.value }} </code>
+  <div class="quiz">
+    <h1>Quiz Machine</h1>
+    <h2>Vite + Vue + TS</h2>
+    <!-- <h3>Same as V5, but with Vite and not with Vue CLI</h3> -->
+    <code>State: {{ state.value }} </code>
 
     <div class="box">
       <!-- if you don't want to use GSAP, bind CSS -->
@@ -31,7 +32,7 @@
         </div>
 
       <!-- ACTIONS -->
-      <actions :state="state" :activeAction="activeAction" />
+      <action :state="state" :activeAction="activeAction" />
       
     </div>
 
@@ -50,7 +51,7 @@ import { defineComponent } from "vue";
 import instructions from "./components/instructions.vue";
 import feedback from "./components/feedback/index.vue";
 import score from "./components/score.vue";
-import actions from "./components/actions.vue";
+import action from "./components/action.vue";
 
 // usable
 import useQuiz from "./use/quiz";
@@ -64,28 +65,24 @@ export default defineComponent({
     instructions,
     score,
     feedback,
-    actions,
+    action,
   },
   setup() {
     const {
       state,
-      send,
       selectedOption,
       isQuestionTime,
       isAnswered,
       currentQuestion,
-      totalQuestions,
       activeAction,
     } = useQuiz(fetchQuestions());
 
     return {
       state,
-      send,
       selectedOption,
       isAnswered,
       isQuestionTime,
       currentQuestion,
-      totalQuestions,
       activeAction,
     };
   },

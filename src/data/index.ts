@@ -2,6 +2,12 @@ import { Question } from "../types/";
 
 const questions: Question[] = [
   {
+    text:
+      "False: You have to author two separate Xstate machines to be used in Vue app and React app. ",
+    answer: "False",
+    options: ['True', 'False']
+  },
+  {
     text: "Which one of the following is a library?",
     answer: "React",
     options: ['React', 'Vue']
@@ -19,12 +25,6 @@ const questions: Question[] = [
   {
     text: "True: Context API in React is bit similar to Provide/Inject in Vue.",
     answer: "True",
-    options: ['True', 'False']
-  },
-  {
-    text:
-      "False: You have to author two separate Xstate machines to be used in Vue app and React app. ",
-    answer: "False",
     options: ['True', 'False']
   },
   {

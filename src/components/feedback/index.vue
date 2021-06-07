@@ -16,13 +16,7 @@ import { Feedback, QuizContext, QuizEvent, QuizState } from "../../types/index";
 import { State } from "xstate";
 
 // Feedback (Vue) components
-import {
-  answering,
-  incorrect,
-  finish,
-  idle,
-  correct
-} from "./moods/";
+import { answering, incorrect, idle, correct, invalid } from "./moods/index";
 
 export default defineComponent({
   props: {
@@ -38,9 +32,10 @@ export default defineComponent({
     const feedbackMap: Feedback[] = [
       { state: "initial", mood: idle, color: "#a27ae8" },
       { state: "answering.idle", mood: answering, color: "#FCCB7E" },
+      { state: "answering.invalid", mood: invalid, color: "#FCCB7E" },
       { state: "correct", mood: correct, color: "#50b97e" },
       { state: "incorrect", mood: incorrect, color: "#ff7043" },
-      { state: "finish", mood: finish, color: "#a27ae8" }
+      { state: "finish", mood: idle, color: "#a27ae8" }
     ];
 
     /* show current feedback based on state value */

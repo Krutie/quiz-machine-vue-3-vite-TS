@@ -18,10 +18,19 @@ iframe {
   height: 100vh;
 }
 
+/* Project title */
+h1, h2 {
+  margin: 5px;
+}
+
+h1 { font-size: 25px; }
+
+h2 { font-size: 20px; }
+
 /* QUIZ CARD */
 .box {
   background: #eee;
-  height: 320px;
+  height: 335px;
   width: 230px;
   margin: 0 0 20px 0;
   position: relative;

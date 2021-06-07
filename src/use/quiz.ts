@@ -11,7 +11,7 @@ import { shake } from '../utils/transitions';
 
 export default function quiz(Questions: Question[]) {
 
-  const totalQuestions = ref(Questions.length)
+  // const totalQuestions = ref(Questions.length) // remove
 
   /* initialise xstate machine */
   const { state, send } = useMachine(QuizMachine, { devTools: true });
@@ -55,7 +55,7 @@ export default function quiz(Questions: Question[]) {
       type: () =>
         send({
           type: "START",
-          totalQuestions: totalQuestions.value,
+          totalQuestions: Questions.length,
         } as QuizEvent)
     },
     {
@@ -82,16 +82,11 @@ export default function quiz(Questions: Question[]) {
 
   /* return properties and methods to control the UI */
   return {
-    // Machine
     state,
-    send,
-    // Question
     selectedOption,
     isQuestionTime,
     isAnswered,
     currentQuestion,
-    totalQuestions,
-    // action
     activeAction
   };
 }
