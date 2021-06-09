@@ -7,4 +7,6 @@ https://quiz-machine-vue.surge.sh/
 https://github.com/Krutie/quiz-machine-vue-3-vite-TS 
 
 ### CodeSandbox
-https://codesandbox.io/s/vxd8z
+https://codesandbox.io/s/hopeful-burnell-89gd6
+
+https://codesandbox.io/s/vxd8z (no longer works)

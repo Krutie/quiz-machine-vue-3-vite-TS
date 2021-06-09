@@ -4,7 +4,7 @@
     <h2>Vite + Vue + TS</h2>
     <span>
       <a href="https://github.com/Krutie/quiz-machine-vue-3-vite-TS" target="_blank"> Github  </a> |
-      <a href="https://codesandbox.io/s/vxd8z" target="_blank"> CodeSandbox </a> |
+      <a href="https://codesandbox.io/s/hopeful-burnell-89gd6" target="_blank"> CodeSandbox </a> |
       <a href="https://quiz-machine-vue.surge.sh" target="_blank"> Surge </a>
     </span>
 
